@@ -2,6 +2,8 @@ package dev.lightdream.rps.commands;
 
 import dev.lightdream.api.LightDreamPlugin;
 import dev.lightdream.api.commands.Command;
+import dev.lightdream.rps.Main;
+import dev.lightdream.rps.gui.RPSGUI;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
@@ -15,7 +17,7 @@ public class BaseCommand extends Command {
 
     @Override
     public void execute(CommandSender commandSender, List<String> list) {
-
+        new RPSGUI(api).open(commandSender);
     }
 
     @Override

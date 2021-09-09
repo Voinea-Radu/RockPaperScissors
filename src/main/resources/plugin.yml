@@ -1,10 +1,12 @@
-name: SpigotPlugin
+name: RockPaperScissors
 version: ${project.version}
-main: dev.lightdream.plugin.Main
+main: dev.lightdream.rps.Main
 authors: [ L1ghtDream ]
 website: https://lightdream.dev
-depend:
+softdepend:
   - LightDreamAPI
 commands:
   rps:
+    description: NA
+  ld-api:
     description: NA
