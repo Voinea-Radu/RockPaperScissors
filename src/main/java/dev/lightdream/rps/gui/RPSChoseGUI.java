@@ -53,8 +53,10 @@ public class RPSChoseGUI extends GUI {
 
     @Override
     public void functionCall(Player player, String s, Object o) {
-        System.out.println(s);
-        System.out.println(o);
+        System.out.println("s = " + s);
+        System.out.println("o = " + o);
+        System.out.println("amount = " + amount);
+        System.out.println(config.items);
         User user = Main.instance.databaseManager.getUser(player);
         GUIFunctions.valueOf(s.toUpperCase()).function.execute(user, o);
     }

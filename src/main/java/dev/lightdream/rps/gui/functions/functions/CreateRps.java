@@ -6,17 +6,21 @@ import dev.lightdream.rps.Main;
 import dev.lightdream.rps.files.dto.RPSGame;
 import dev.lightdream.rps.gui.functions.GUIFunction;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class CreateRps implements GUIFunction {
     @Override
-    public void execute(User user, Object args) {
-        String arg = (String) ((MessageBuilder) args).getBase();
+    public void execute(User user, Object a) {
+        String arg = (String) ((MessageBuilder) a).getBase();
+        List<String> args = Arrays.asList(arg.split("\\|"));
 
-        if (arg.split("\\|")[0].equals("0") || arg.split("\\|")[0].equals("")) {
+        if (args.get(0).equals("0") || args.get(0).equals("")) {
             return;
         }
 
-        int amount = Integer.parseInt(arg.split("\\|")[0]);
-        String rpsType = arg.split("\\|")[1];
+        int amount = Integer.parseInt(args.get(0));
+        String rpsType = args.get(1);
 
         Main.instance.rpsManager.rpsGames.add(new RPSGame(user, RPSGame.RPSType.of(rpsType), amount));
         Main.instance.messageManager.sendMessage(user, Main.instance.lang.matchCreated);

@@ -36,18 +36,21 @@ public class Config extends dev.lightdream.api.files.config.Config {
                         new GUIItem.GUIItemArgs(new HashMap<Object, Object>(){{
                             put("create_rps", "%amount%|rock");
                             put("play_rps", "%player%|rock");
+                            put("close_gui", "");
                         }}
                         ), false));
                 put("paper", new GUIItem(new Item(XMaterial.PLAYER_HEAD, 1, 1,"Paper", new ArrayList<>()),
                         new GUIItem.GUIItemArgs(new HashMap<Object, Object>(){{
                             put("create_rps", "%amount%|paper");
                             put("play_rps", "%player%|paper");
+                            put("close_gui", "");
                         }}
                         ), false));
                 put("scissors", new GUIItem(new Item(XMaterial.PLAYER_HEAD, 2, 1,"Scissors",  new ArrayList<>()),
                         new GUIItem.GUIItemArgs(new HashMap<Object, Object>(){{
                             put("create_rps", "%amount%|scissors");
                             put("play_rps", "%player%|scissors");
+                            put("close_gui", "");
                         }}
                         ), false));
             }}

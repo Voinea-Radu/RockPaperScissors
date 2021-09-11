@@ -6,14 +6,17 @@ import dev.lightdream.rps.Main;
 import dev.lightdream.rps.files.dto.RPSGame;
 import dev.lightdream.rps.gui.functions.GUIFunction;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class PlayRsp implements GUIFunction {
     @Override
-    public void execute(User user, Object args) {
-        String arg = (String) ((MessageBuilder) args).getBase();
-        String opponent = arg.split("\\|")[0];
-        String rpsType = arg.split("\\|")[1];
+    public void execute(User user, Object a) {
+        String arg = (String) ((MessageBuilder) a).getBase();
+        List<String> args = Arrays.asList(arg.split("\\|"));
+        String opponent = args.get(0);
+        String rpsType = args.get(1);
 
         if (opponent.equals("")) {
             return;
@@ -33,12 +36,22 @@ public class PlayRsp implements GUIFunction {
             return;
         }
 
+        System.out.println(game.play);
+        System.out.println(RPSGame.RPSType.of(rpsType));
+
         User winner = game.play(user, RPSGame.RPSType.of(rpsType));
+
+        for (RPSGame.RPSType v1 : RPSGame.RPSType.values()) {
+            for (RPSGame.RPSType v2 : RPSGame.RPSType.values()) {
+                System.out.println(v1 + " vs " + v2 + " -> " + v1.getEndState(v2));
+            }
+        }
+
         Main.instance.messageManager.sendAll(new MessageBuilder(Main.instance.lang.rpsMatchAnnounce).addPlaceholders(new HashMap<String, String>() {{
-            put("%player-1%", user.name);
-            put("%player-2%", game.user.name);
-            put("%winner%", winner.name);
-            put("%amount%", String.valueOf(game.bet));
+            put("player-1", user.name);
+            put("player-2", game.user.name);
+            put("winner", winner == null ? "TIE" : winner.name);
+            put("amount", String.valueOf(game.bet));
         }}));
 
 
