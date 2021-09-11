@@ -4,6 +4,7 @@ import dev.lightdream.api.API;
 import dev.lightdream.api.LightDreamPlugin;
 import dev.lightdream.api.databases.User;
 import dev.lightdream.api.files.config.SQLConfig;
+import dev.lightdream.api.managers.DatabaseManager;
 import dev.lightdream.api.managers.MessageManager;
 import dev.lightdream.rps.commands.BaseCommand;
 import dev.lightdream.rps.commands.CreateCommand;
@@ -29,7 +30,7 @@ public final class Main extends LightDreamPlugin {
 
     @Override
     public void onEnable() {
-        init("RockPaperScissors", "rps", "1.1");
+        init("RockPaperScissors", "rps", "1.2");
         instance = this;
 
         rpsManager = new RPSManager();
@@ -75,6 +76,11 @@ public final class Main extends LightDreamPlugin {
         });
 
         return langs;
+    }
+
+    @Override
+    public DatabaseManager getDatabaseManager() {
+        return databaseManager;
     }
 
     @Override

@@ -36,6 +36,16 @@ public class PlayRsp implements GUIFunction {
             return;
         }
 
+        if (!user.hasMoney(game.bet)) {
+            Main.instance.getMessageManager().sendMessage(user, Main.instance.lang.notEnoughMoney);
+            return;
+        }
+
+        if (game.user.equals(user)) {
+            Main.instance.getMessageManager().sendMessage(user, Main.instance.lang.cannotBetYourself);
+            return;
+        }
+
         User winner = game.play(user, RPSGame.RPSType.of(rpsType));
 
         Main.instance.messageManager.sendAll(new MessageBuilder(Main.instance.lang.rpsMatchAnnounce).addPlaceholders(new HashMap<String, String>() {{
@@ -45,6 +55,6 @@ public class PlayRsp implements GUIFunction {
             put("amount", String.valueOf(game.bet));
         }}));
 
-
+        winner.addMoney(game.bet * 2);
     }
 }

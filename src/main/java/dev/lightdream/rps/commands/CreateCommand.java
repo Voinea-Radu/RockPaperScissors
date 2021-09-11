@@ -26,17 +26,29 @@ public class CreateCommand extends Command {
         }
 
         User user = Main.instance.databaseManager.getUser(commandSender);
+
+        if(user==null){
+            api.getMessageManager().sendMessage(commandSender, Main.instance.lang.invalidUser);
+            return;
+        }
+
         int amount;
 
         try {
             amount = Integer.parseInt(args.get(0));
         } catch (NumberFormatException exception) {
-            api.getMessageManager().sendMessage(commandSender, Main.instance.lang.invalidNumber);
+            api.getMessageManager().sendMessage(user, Main.instance.lang.invalidNumber);
             return;
         }
 
+        if(!user.hasMoney(amount)){
+            api.getMessageManager().sendMessage(user, Main.instance.lang.notEnoughMoney);
+            return;
+        }
+
+        user.removeMoney(amount);
+
         new RPSChoseGUI(api, amount).open(user);
-        //api.getMessageManager().sendMessage(commandSender, Main.instance.lang.matchCreated);
     }
 
     @Override

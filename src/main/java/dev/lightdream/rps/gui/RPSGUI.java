@@ -25,6 +25,7 @@ public class RPSGUI extends GUI {
     public String parse(String raw, Player player) {
         return (String) new MessageBuilder(raw).addPlaceholders(new HashMap<String, String>() {{
             put("player", Main.instance.rpsManager.rpsGames.get(current - 1).user.name);
+            put("amount", String.valueOf(Main.instance.rpsManager.rpsGames.get(current - 1).bet));
         }}).parse();
     }
 
