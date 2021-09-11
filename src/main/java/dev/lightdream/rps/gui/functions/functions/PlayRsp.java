@@ -36,16 +36,7 @@ public class PlayRsp implements GUIFunction {
             return;
         }
 
-        System.out.println(game.play);
-        System.out.println(RPSGame.RPSType.of(rpsType));
-
         User winner = game.play(user, RPSGame.RPSType.of(rpsType));
-
-        for (RPSGame.RPSType v1 : RPSGame.RPSType.values()) {
-            for (RPSGame.RPSType v2 : RPSGame.RPSType.values()) {
-                System.out.println(v1 + " vs " + v2 + " -> " + v1.getEndState(v2));
-            }
-        }
 
         Main.instance.messageManager.sendAll(new MessageBuilder(Main.instance.lang.rpsMatchAnnounce).addPlaceholders(new HashMap<String, String>() {{
             put("player-1", user.name);
