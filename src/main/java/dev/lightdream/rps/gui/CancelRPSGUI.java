@@ -13,20 +13,22 @@ import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 
-public class RPSGUI extends GUI {
+public class CancelRPSGUI extends GUI {
 
     private int current = 0;
+    private final User user;
 
-    public RPSGUI(IAPI api) {
+    public CancelRPSGUI(IAPI api, User user) {
         super(api);
+        this.user = user;
     }
 
     @Override
     public String parse(String raw, Player player) {
         return (String) new MessageBuilder(raw).addPlaceholders(new HashMap<String, String>() {{
-            put("player", Main.instance.rpsManager.rpsGames.get(current - 1).user.name);
+            //put("player", Main.instance.rpsManager.rpsGames.get(current - 1).user.name);
             put("amount", String.valueOf(Main.instance.rpsManager.rpsGames.get(current - 1).bet));
-            put("id", String.valueOf(current));
+            put("id", String.valueOf(Main.instance.rpsManager.getRpsGames(user).get(current).id));
         }}).parse();
     }
 
@@ -37,7 +39,7 @@ public class RPSGUI extends GUI {
 
     @Override
     public InventoryProvider getProvider() {
-        return new RPSGUI(api);
+        return new CancelRPSGUI(api, user);
     }
 
     @Override
@@ -49,7 +51,7 @@ public class RPSGUI extends GUI {
     @Override
     public boolean canAddItem(GUIItem item, String s) {
         if (item.repeatedItem) {
-            if (current >= Main.instance.rpsManager.rpsGames.size()) {
+            if (current >= Main.instance.rpsManager.getRpsGames(user).size()) {
                 return false;
             }
 

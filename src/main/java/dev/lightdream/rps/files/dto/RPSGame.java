@@ -7,11 +7,19 @@ import lombok.AllArgsConstructor;
 
 import java.util.Objects;
 
-@AllArgsConstructor
 public class RPSGame {
+
+    public int id;
     public User user;
     public RPSType play;
     public int bet;
+
+    public RPSGame(User user, RPSType play, int bet){
+        this.id = Main.instance.rpsManager.getId();
+        this.user=user;
+        this.play=play;
+        this.bet=bet;
+    }
 
     public enum RPSType {
         ROCK, PAPER, SCISSORS;

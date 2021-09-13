@@ -22,7 +22,17 @@ public class CreateRps implements GUIFunction {
         int amount = Integer.parseInt(args.get(0));
         String rpsType = args.get(1);
 
+        if(!user.hasMoney(amount)){
+            Main.instance.getMessageManager().sendMessage(user, Main.instance.lang.notEnoughMoney);
+            return;
+        }
+
+        user.removeMoney(amount);
+
+
         Main.instance.rpsManager.rpsGames.add(new RPSGame(user, RPSGame.RPSType.of(rpsType), amount));
         Main.instance.messageManager.sendMessage(user, Main.instance.lang.matchCreated);
+
+
     }
 }

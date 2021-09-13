@@ -15,21 +15,16 @@ public class PlayRsp implements GUIFunction {
     public void execute(User user, Object a) {
         String arg = (String) ((MessageBuilder) a).getBase();
         List<String> args = Arrays.asList(arg.split("\\|"));
-        String opponent = args.get(0);
+        String idStr = args.get(0);
         String rpsType = args.get(1);
 
-        if (opponent.equals("")) {
+        if (idStr.equals("")) {
             return;
         }
 
-        User opponentUser = Main.instance.databaseManager.getUser(opponent);
+        int id = Integer.parseInt(idStr);
 
-        if (opponentUser == null) {
-            Main.instance.getMessageManager().sendMessage(user, Main.instance.lang.invalidMatch);
-            return;
-        }
-
-        RPSGame game = Main.instance.rpsManager.getRpsGame(opponentUser);
+        RPSGame game = Main.instance.rpsManager.getRpsGame(id);
 
         if (game == null) {
             Main.instance.getMessageManager().sendMessage(user, Main.instance.lang.invalidMatch);
@@ -55,6 +50,11 @@ public class PlayRsp implements GUIFunction {
             put("amount", String.valueOf(game.bet));
         }}));
 
-        winner.addMoney(game.bet * 2);
+        if (winner == null) {
+            user.addMoney(game.bet);
+            game.user.addMoney(game.bet);
+        } else {
+            winner.addMoney(game.bet * 2);
+        }
     }
 }
