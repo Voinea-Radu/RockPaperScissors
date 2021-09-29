@@ -8,7 +8,7 @@ import dev.lightdream.rps.gui.functions.GUIFunction;
 
 public class ChoseRPS implements GUIFunction {
     @Override
-    public void execute(User user, Object args) {
+    public void execute(User user, MessageBuilder args) {
         String arg = (String)((MessageBuilder) args).getBase();
         new RPSChoseGUI(Main.instance, arg).open(user);
     }

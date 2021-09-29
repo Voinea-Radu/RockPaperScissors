@@ -2,8 +2,8 @@ package dev.lightdream.rps.gui;
 
 import dev.lightdream.api.IAPI;
 import dev.lightdream.api.databases.User;
-import dev.lightdream.api.files.dto.GUIConfig;
-import dev.lightdream.api.files.dto.GUIItem;
+import dev.lightdream.api.dto.GUIConfig;
+import dev.lightdream.api.dto.GUIItem;
 import dev.lightdream.api.gui.GUI;
 import dev.lightdream.api.utils.MessageBuilder;
 import dev.lightdream.rps.Main;
@@ -52,13 +52,18 @@ public class RPSChoseGUI extends GUI {
     }
 
     @Override
-    public void functionCall(Player player, String s, Object o) {
+    public void functionCall(Player player, String s, MessageBuilder o) {
         User user = Main.instance.databaseManager.getUser(player);
         GUIFunctions.valueOf(s.toUpperCase()).function.execute(user, o);
     }
 
     @Override
     public boolean canAddItem(GUIItem guiItem, String s) {
-        return !guiItem.repeatedItem;
+        return !guiItem.repeated;
+    }
+
+    @Override
+    public HashMap<Class<?>, Object> getArgs() {
+        return new HashMap<>();
     }
 }

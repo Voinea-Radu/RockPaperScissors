@@ -9,7 +9,7 @@ import dev.lightdream.rps.gui.functions.GUIFunction;
 
 public class CancelRps implements GUIFunction {
     @Override
-    public void execute(User user, Object args) {
+    public void execute(User user, MessageBuilder args) {
         String arg = (String)((MessageBuilder) args).getBase();
 
         if(arg.equals("")){

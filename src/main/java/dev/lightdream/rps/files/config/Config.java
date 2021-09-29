@@ -1,15 +1,15 @@
 package dev.lightdream.rps.files.config;
 
-import dev.lightdream.api.files.dto.GUIConfig;
-import dev.lightdream.api.files.dto.GUIItem;
-import dev.lightdream.api.files.dto.Item;
-import dev.lightdream.api.files.dto.XMaterial;
+import dev.lightdream.api.dto.GUIConfig;
+import dev.lightdream.api.dto.GUIItem;
+import dev.lightdream.api.dto.Item;
+import dev.lightdream.api.dto.XMaterial;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class Config extends dev.lightdream.api.files.config.Config {
+public class Config extends dev.lightdream.api.conifgs.Config {
 
     public int minBet = 10000;
     public  int maxMatches = 5;
@@ -26,7 +26,8 @@ public class Config extends dev.lightdream.api.files.config.Config {
                 )), new GUIItem.GUIItemArgs(new HashMap<Object, Object>() {{
                             put("chose_rps", "%id%");
                         }}
-                        ), true));
+                        ), Arrays.asList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,29,30,31,32,33,34,35,
+                        36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53)));
             }}
     );
 
@@ -43,21 +44,21 @@ public class Config extends dev.lightdream.api.files.config.Config {
                             put("play_rps", "%id%|rock");
                             put("close_gui", "");
                         }}
-                        ), false));
+                        )));
                 put("paper", new GUIItem(new Item(XMaterial.PLAYER_HEAD, 13, 1, "Paper", new ArrayList<>()),
                         new GUIItem.GUIItemArgs(new HashMap<Object, Object>() {{
                             put("create_rps", "%amount%|paper");
                             put("play_rps", "%id%|paper");
                             put("close_gui", "");
                         }}
-                        ), false));
+                        )));
                 put("scissors", new GUIItem(new Item(XMaterial.PLAYER_HEAD, 15, 1, "Scissors", new ArrayList<>()),
                         new GUIItem.GUIItemArgs(new HashMap<Object, Object>() {{
                             put("create_rps", "%amount%|scissors");
                             put("play_rps", "%id%|scissors");
                             put("close_gui", "");
                         }}
-                        ), false));
+                        )));
             }}
     );
 
@@ -74,7 +75,7 @@ public class Config extends dev.lightdream.api.files.config.Config {
                 )), new GUIItem.GUIItemArgs(new HashMap<Object, Object>() {{
                     put("cancel_rps", "%id%");
                 }}
-                ), true));
+                )));
             }}
     );
 

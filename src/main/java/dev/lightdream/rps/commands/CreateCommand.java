@@ -1,7 +1,7 @@
 package dev.lightdream.rps.commands;
 
 import dev.lightdream.api.LightDreamPlugin;
-import dev.lightdream.api.commands.Command;
+import dev.lightdream.api.commands.SubCommand;
 import dev.lightdream.api.databases.User;
 import dev.lightdream.rps.Main;
 import dev.lightdream.rps.gui.RPSChoseGUI;
@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collections;
 import java.util.List;
 
-public class CreateCommand extends Command {
+public class CreateCommand extends SubCommand {
 
     public CreateCommand(@NotNull LightDreamPlugin plugin) {
         super(plugin, Collections.singletonList("create"), "", "", true, false, "[amount]");

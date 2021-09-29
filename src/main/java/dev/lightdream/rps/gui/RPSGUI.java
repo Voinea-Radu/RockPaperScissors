@@ -2,8 +2,8 @@ package dev.lightdream.rps.gui;
 
 import dev.lightdream.api.IAPI;
 import dev.lightdream.api.databases.User;
-import dev.lightdream.api.files.dto.GUIConfig;
-import dev.lightdream.api.files.dto.GUIItem;
+import dev.lightdream.api.dto.GUIConfig;
+import dev.lightdream.api.dto.GUIItem;
 import dev.lightdream.api.gui.GUI;
 import dev.lightdream.api.utils.MessageBuilder;
 import dev.lightdream.rps.Main;
@@ -41,14 +41,19 @@ public class RPSGUI extends GUI {
     }
 
     @Override
-    public void functionCall(Player player, String function, Object args) {
+    public HashMap<Class<?>, Object> getArgs() {
+        return new HashMap<>();
+    }
+
+    @Override
+    public void functionCall(Player player, String function, MessageBuilder args) {
         User user = Main.instance.databaseManager.getUser(player);
         GUIFunctions.valueOf(function.toUpperCase()).function.execute(user, args);
     }
 
     @Override
     public boolean canAddItem(GUIItem item, String s) {
-        if (item.repeatedItem) {
+        if (item.repeated) {
             if (current >= Main.instance.rpsManager.rpsGames.size()) {
                 return false;
             }

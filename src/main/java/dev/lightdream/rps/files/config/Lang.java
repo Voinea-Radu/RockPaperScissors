@@ -1,6 +1,6 @@
 package dev.lightdream.rps.files.config;
 
-public class Lang extends dev.lightdream.api.files.config.Lang {
+public class Lang extends dev.lightdream.api.conifgs.Lang {
 
     //public String invalidPlay = "This is an invalid play";
     public String matchCreated = "&eCreated match";
