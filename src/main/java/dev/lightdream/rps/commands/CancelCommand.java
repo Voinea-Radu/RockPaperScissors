@@ -5,7 +5,6 @@ import dev.lightdream.api.commands.SubCommand;
 import dev.lightdream.api.databases.User;
 import dev.lightdream.rps.Main;
 import dev.lightdream.rps.gui.CancelRPSGUI;
-import dev.lightdream.rps.gui.functions.functions.CancelRps;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
@@ -19,8 +18,8 @@ public class CancelCommand extends SubCommand {
 
     @Override
     public void execute(CommandSender commandSender, List<String> list) {
-        User user =Main.instance.databaseManager.getUser(commandSender);
-        if(user == null){
+        User user = Main.instance.databaseManager.getUser(commandSender);
+        if (user == null) {
             return;
         }
         new CancelRPSGUI(Main.instance, user).open(user);

@@ -3,7 +3,6 @@ package dev.lightdream.rps.files.dto;
 
 import dev.lightdream.api.databases.User;
 import dev.lightdream.rps.Main;
-import lombok.AllArgsConstructor;
 
 import java.util.Objects;
 
@@ -14,11 +13,38 @@ public class RPSGame {
     public RPSType play;
     public int bet;
 
-    public RPSGame(User user, RPSType play, int bet){
+    public RPSGame(User user, RPSType play, int bet) {
         this.id = Main.instance.rpsManager.getId();
-        this.user=user;
-        this.play=play;
-        this.bet=bet;
+        this.user = user;
+        this.play = play;
+        this.bet = bet;
+    }
+
+    public User play(User user, RPSType play) {
+        RPSEndState endState = this.play.getEndState(play);
+        Main.instance.rpsManager.rpsGames.remove(this);
+        switch (endState) {
+            case WIN:
+                return this.user;
+            case TIE:
+                return null;
+            case LOSE:
+                return user;
+        }
+        return null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RPSGame rpsGame = (RPSGame) o;
+        return Objects.equals(user, rpsGame.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(user);
     }
 
     public enum RPSType {
@@ -78,32 +104,5 @@ public class RPSGame {
 
     public enum RPSEndState {
         WIN, LOSE, TIE
-    }
-
-    public User play(User user, RPSType play){
-        RPSEndState endState =  this.play.getEndState(play);
-        Main.instance.rpsManager.rpsGames.remove(this);
-        switch (endState){
-            case WIN:
-                return this.user;
-            case TIE:
-                return null;
-            case LOSE:
-                return user;
-        }
-        return null;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RPSGame rpsGame = (RPSGame) o;
-        return Objects.equals(user, rpsGame.user);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(user);
     }
 }

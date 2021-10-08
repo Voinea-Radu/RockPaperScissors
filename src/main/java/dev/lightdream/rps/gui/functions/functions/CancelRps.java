@@ -1,18 +1,18 @@
 package dev.lightdream.rps.gui.functions.functions;
 
 import dev.lightdream.api.databases.User;
-import dev.lightdream.api.utils.MessageBuilder;
 import dev.lightdream.rps.Main;
 import dev.lightdream.rps.files.dto.RPSGame;
-import dev.lightdream.rps.gui.RPSGUI;
 import dev.lightdream.rps.gui.functions.GUIFunction;
+
+import java.util.List;
 
 public class CancelRps implements GUIFunction {
     @Override
-    public void execute(User user, MessageBuilder args) {
-        String arg = (String)((MessageBuilder) args).getBase();
+    public void execute(User user, List<String> args) {
+        String arg = args.get(0);
 
-        if(arg.equals("")){
+        if (arg.equals("")) {
             Main.instance.getMessageManager().sendMessage(user, Main.instance.lang.invalidMatch);
             return;
         }
@@ -21,7 +21,7 @@ public class CancelRps implements GUIFunction {
 
         RPSGame game = Main.instance.rpsManager.getRpsGame(id);
 
-        if(game==null || !game.user.equals(user)){
+        if (game == null || !game.user.equals(user)) {
             Main.instance.getMessageManager().sendMessage(user, Main.instance.lang.invalidMatch);
             return;
         }

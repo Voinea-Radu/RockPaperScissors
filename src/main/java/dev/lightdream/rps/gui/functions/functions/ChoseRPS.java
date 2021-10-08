@@ -1,15 +1,16 @@
 package dev.lightdream.rps.gui.functions.functions;
 
 import dev.lightdream.api.databases.User;
-import dev.lightdream.api.utils.MessageBuilder;
 import dev.lightdream.rps.Main;
 import dev.lightdream.rps.gui.RPSChoseGUI;
 import dev.lightdream.rps.gui.functions.GUIFunction;
 
+import java.util.List;
+
 public class ChoseRPS implements GUIFunction {
     @Override
-    public void execute(User user, MessageBuilder args) {
-        String arg = (String)((MessageBuilder) args).getBase();
+    public void execute(User user, List<String> args) {
+        String arg = args.get(0);
         new RPSChoseGUI(Main.instance, arg).open(user);
     }
 }

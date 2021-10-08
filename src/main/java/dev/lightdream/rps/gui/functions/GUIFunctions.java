@@ -1,8 +1,8 @@
 package dev.lightdream.rps.gui.functions;
 
-import dev.lightdream.rps.gui.CancelRPSGUI;
 import dev.lightdream.rps.gui.functions.functions.*;
 
+@SuppressWarnings("unused")
 public enum GUIFunctions {
 
     CHOSE_RPS(new ChoseRPS()),

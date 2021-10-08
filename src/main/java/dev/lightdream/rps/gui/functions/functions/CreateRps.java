@@ -1,7 +1,6 @@
 package dev.lightdream.rps.gui.functions.functions;
 
 import dev.lightdream.api.databases.User;
-import dev.lightdream.api.utils.MessageBuilder;
 import dev.lightdream.rps.Main;
 import dev.lightdream.rps.files.dto.RPSGame;
 import dev.lightdream.rps.gui.functions.GUIFunction;
@@ -11,8 +10,8 @@ import java.util.List;
 
 public class CreateRps implements GUIFunction {
     @Override
-    public void execute(User user, MessageBuilder a) {
-        String arg = (String) ((MessageBuilder) a).getBase();
+    public void execute(User user, List<String> a) {
+        String arg = a.get(0);
         List<String> args = Arrays.asList(arg.split("\\|"));
 
         if (args.get(0).equals("0") || args.get(0).equals("")) {
@@ -22,7 +21,7 @@ public class CreateRps implements GUIFunction {
         int amount = Integer.parseInt(args.get(0));
         String rpsType = args.get(1);
 
-        if(!user.hasMoney(amount)){
+        if (!user.hasMoney(amount)) {
             Main.instance.getMessageManager().sendMessage(user, Main.instance.lang.notEnoughMoney);
             return;
         }
