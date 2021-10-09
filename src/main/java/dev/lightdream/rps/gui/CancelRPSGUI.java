@@ -20,7 +20,7 @@ import java.util.List;
 public class CancelRPSGUI extends GUI {
 
     private final User user;
-    private int current = 0;
+    private int current = -1;
 
     public CancelRPSGUI(IAPI api, User user) {
         super(api);
@@ -30,9 +30,9 @@ public class CancelRPSGUI extends GUI {
     @Override
     public String parse(String raw, Player player) {
         return (String) new MessageBuilder(raw).addPlaceholders(new HashMap<String, String>() {{
-            put("player", Main.instance.rpsManager.rpsGames.get(current).user.name);
-            put("play", Main.instance.rpsManager.rpsGames.get(current).play.toString());
-            put("amount", String.valueOf(Main.instance.rpsManager.rpsGames.get(current).bet));
+            put("player", Main.instance.rpsManager.getRpsGames(user).get(current).user.name);
+            put("play", Main.instance.rpsManager.getRpsGames(user).get(current).play.toString());
+            put("amount", String.valueOf(Main.instance.rpsManager.getRpsGames(user).get(current).bet));
             put("id", String.valueOf(Main.instance.rpsManager.getRpsGames(user).get(current).id));
         }}).parse();
     }
@@ -53,14 +53,16 @@ public class CancelRPSGUI extends GUI {
         GUIFunctions.valueOf(function.toUpperCase()).function.execute(user, args);
     }
 
+    @SuppressWarnings("RedundantIfStatement")
     @Override
     public boolean canAddItem(GUIItem item, String s) {
         if (item.repeated) {
+            current++;
+
             if (current >= Main.instance.rpsManager.getRpsGames(user).size()) {
                 return false;
             }
 
-            current++;
             return true;
         }
         return true;
