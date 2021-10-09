@@ -27,11 +27,11 @@ public class RPSGUI extends GUI {
 
     @Override
     public String parse(String raw, Player player) {
-        return (String) new MessageBuilder(raw).addPlaceholders(new HashMap<String, String>() {{
+        return new MessageBuilder(raw).addPlaceholders(new HashMap<String, String>() {{
             put("player", Main.instance.rpsManager.rpsGames.get(current - 1).user.name);
             put("amount", String.valueOf(Main.instance.rpsManager.rpsGames.get(current - 1).bet));
             put("id", String.valueOf(current));
-        }}).parse();
+        }}).parseString();
     }
 
     @Override

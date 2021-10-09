@@ -31,7 +31,7 @@ public final class Main extends LightDreamPlugin {
 
     @Override
     public void onEnable() {
-        init("RockPaperScissors", "rps", "1.5");
+        init("RockPaperScissors", "rps", "1.6");
         instance = this;
 
         rpsManager = new RPSManager();
@@ -54,7 +54,7 @@ public final class Main extends LightDreamPlugin {
 
     @Override
     public void disable() {
-
+        databaseManager.save();
     }
 
     @Override

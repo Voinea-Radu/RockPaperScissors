@@ -30,8 +30,9 @@ public class CancelRPSGUI extends GUI {
     @Override
     public String parse(String raw, Player player) {
         return (String) new MessageBuilder(raw).addPlaceholders(new HashMap<String, String>() {{
-            //put("player", Main.instance.rpsManager.rpsGames.get(current - 1).user.name);
-            put("amount", String.valueOf(Main.instance.rpsManager.rpsGames.get(current - 1).bet));
+            put("player", Main.instance.rpsManager.rpsGames.get(current).user.name);
+            put("play", Main.instance.rpsManager.rpsGames.get(current).play.toString());
+            put("amount", String.valueOf(Main.instance.rpsManager.rpsGames.get(current).bet));
             put("id", String.valueOf(Main.instance.rpsManager.getRpsGames(user).get(current).id));
         }}).parse();
     }

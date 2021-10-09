@@ -1,7 +1,6 @@
 package dev.lightdream.rps.gui;
 
 import dev.lightdream.api.IAPI;
-import dev.lightdream.api.databases.User;
 import dev.lightdream.api.dto.GUIConfig;
 import dev.lightdream.api.dto.GUIItem;
 import dev.lightdream.api.gui.GUI;
@@ -20,20 +19,21 @@ import java.util.List;
 public class RPSChoseGUI extends GUI {
 
     private final int amount;
-    private final String player;
+    private final int id;
     private final boolean create;
 
     public RPSChoseGUI(IAPI api, int amount) {
         super(api);
         this.amount = amount;
-        this.player = "";
+        this.id = -1;
         this.create = true;
     }
 
-    public RPSChoseGUI(IAPI api, String player) {
+    @SuppressWarnings("unused")
+    public RPSChoseGUI(IAPI api, int id, boolean useId) {
         super(api);
-        this.amount = 0;
-        this.player = player;
+        this.amount = -1;
+        this.id = id;
         this.create = false;
     }
 
@@ -41,7 +41,7 @@ public class RPSChoseGUI extends GUI {
     public String parse(String s, Player p) {
         return (String) new MessageBuilder(s).addPlaceholders(new HashMap<String, String>() {{
             put("amount", String.valueOf(amount));
-            put("player", player);
+            put("id", String.valueOf(id));
         }}).parse();
     }
 
@@ -52,13 +52,18 @@ public class RPSChoseGUI extends GUI {
 
     @Override
     public InventoryProvider getProvider() {
-        return create ? new RPSChoseGUI(api, amount) : new RPSChoseGUI(api, player);
+        return create ? new RPSChoseGUI(api, amount) : new RPSChoseGUI(api, id, true);
     }
 
     @Override
-    public void functionCall(Player player, String s, List<String> o) {
-        User user = Main.instance.databaseManager.getUser(player);
-        GUIFunctions.valueOf(s.toUpperCase()).function.execute(user, o);
+    public void functionCall(Player player, String function, List<String> args) {
+        if (create && function.equalsIgnoreCase(GUIFunctions.PLAY_RPS.name())) {
+            return;
+        }
+        if (!create && function.equalsIgnoreCase(GUIFunctions.CREATE_RPS.name())) {
+            return;
+        }
+        GUIFunctions.valueOf(function.toUpperCase()).function.execute(Main.instance.databaseManager.getUser(player), args);
     }
 
     @Override

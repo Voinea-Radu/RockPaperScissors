@@ -13,8 +13,7 @@ import java.util.List;
 public class PlayRsp implements GUIFunction {
     @Override
     public void execute(User user, List<String> a) {
-        String arg = a.get(0);
-        List<String> args = Arrays.asList(arg.split("\\|"));
+        List<String> args = Arrays.asList(a.get(0).split("\\|"));
         String idStr = args.get(0);
         String rpsType = args.get(1);
 
