@@ -9,6 +9,7 @@ import dev.lightdream.api.managers.MessageManager;
 import dev.lightdream.rps.commands.BaseCommand;
 import dev.lightdream.rps.commands.CancelCommand;
 import dev.lightdream.rps.commands.CreateCommand;
+import dev.lightdream.rps.commands.HelpCommand;
 import dev.lightdream.rps.files.config.Config;
 import dev.lightdream.rps.files.config.Lang;
 import dev.lightdream.rps.managers.RPSManager;
@@ -31,7 +32,7 @@ public final class Main extends LightDreamPlugin {
 
     @Override
     public void onEnable() {
-        init("RockPaperScissors", "rps", "1.8");
+        init("RockPaperScissors", "rps", "1.9");
         instance = this;
 
         rpsManager = new RPSManager();
@@ -67,6 +68,7 @@ public final class Main extends LightDreamPlugin {
         baseSubCommands.add(new BaseCommand(this));
         baseSubCommands.add(new CreateCommand(this));
         baseSubCommands.add(new CancelCommand(this));
+        baseSubCommands.add(new HelpCommand(this));
     }
 
     @Override

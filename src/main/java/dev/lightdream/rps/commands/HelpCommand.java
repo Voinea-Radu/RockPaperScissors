@@ -2,6 +2,7 @@ package dev.lightdream.rps.commands;
 
 import dev.lightdream.api.IAPI;
 import dev.lightdream.api.commands.SubCommand;
+import dev.lightdream.rps.Main;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
@@ -16,7 +17,7 @@ public class HelpCommand extends SubCommand {
 
     @Override
     public void execute(CommandSender commandSender, List<String> list) {
-        sendUsage(commandSender);
+        Main.instance.baseCommandManager.sendUsage(commandSender);
     }
 
     @Override
