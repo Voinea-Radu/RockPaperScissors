@@ -9,6 +9,7 @@ public enum GUIFunctions {
     PLAY_RPS(new PlayRsp()),
     CREATE_RPS(new CreateRps()),
     CLOSE_GUI(new CloseGUI()),
+    REOPEN(new ReOpen()),
     CANCEL_RPS(new CancelRps());
 
     public GUIFunction function;

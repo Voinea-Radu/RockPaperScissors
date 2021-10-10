@@ -77,7 +77,7 @@ public class RPSGUI extends GUI {
     @Override
     public void functionCall(Player player, String function, List<String> args) {
         User user = Main.instance.databaseManager.getUser(player);
-        GUIFunctions.valueOf(function.toUpperCase()).function.execute(user, args);
+        GUIFunctions.valueOf(function.toUpperCase()).function.execute(this, user, args);
     }
 
     @Override

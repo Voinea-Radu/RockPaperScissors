@@ -8,6 +8,7 @@ import dev.lightdream.rps.gui.RPSChoseGUI;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -60,6 +61,6 @@ public class CreateCommand extends SubCommand {
 
     @Override
     public List<String> onTabComplete(CommandSender commandSender, List<String> list) {
-        return null;
+        return new ArrayList<>();
     }
 }

@@ -1,6 +1,7 @@
 package dev.lightdream.rps.gui.functions.functions;
 
 import dev.lightdream.api.databases.User;
+import dev.lightdream.api.gui.GUI;
 import dev.lightdream.api.utils.MessageBuilder;
 import dev.lightdream.rps.Main;
 import dev.lightdream.rps.files.dto.RPSGame;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class PlayRsp implements GUIFunction {
     @Override
-    public void execute(User user, List<String> a) {
+    public void execute(GUI gui, User user, List<String> a) {
         List<String> args = Arrays.asList(a.get(0).split("\\|"));
         String idStr = args.get(0);
         String rpsType = args.get(1);

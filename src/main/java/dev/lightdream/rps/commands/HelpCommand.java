@@ -1,8 +1,7 @@
 package dev.lightdream.rps.commands;
 
-import dev.lightdream.api.LightDreamPlugin;
+import dev.lightdream.api.IAPI;
 import dev.lightdream.api.commands.SubCommand;
-import dev.lightdream.rps.gui.RPSGUI;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
@@ -10,14 +9,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class BaseCommand extends SubCommand {
-    public BaseCommand(@NotNull LightDreamPlugin plugin) {
-        super(plugin, Collections.singletonList(""), "", "", true, false, "");
+public class HelpCommand extends SubCommand {
+    public HelpCommand(@NotNull IAPI api) {
+        super(api, Collections.singletonList("help"), "", "", false, false, "");
     }
 
     @Override
     public void execute(CommandSender commandSender, List<String> list) {
-        new RPSGUI(api).open(commandSender);
+        sendUsage(commandSender);
     }
 
     @Override

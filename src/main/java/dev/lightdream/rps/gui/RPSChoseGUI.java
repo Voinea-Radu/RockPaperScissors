@@ -63,7 +63,7 @@ public class RPSChoseGUI extends GUI {
         if (!create && function.equalsIgnoreCase(GUIFunctions.CREATE_RPS.name())) {
             return;
         }
-        GUIFunctions.valueOf(function.toUpperCase()).function.execute(Main.instance.databaseManager.getUser(player), args);
+        GUIFunctions.valueOf(function.toUpperCase()).function.execute(this, Main.instance.databaseManager.getUser(player), args);
     }
 
     @Override

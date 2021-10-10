@@ -8,6 +8,7 @@ import dev.lightdream.rps.gui.CancelRPSGUI;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -27,6 +28,6 @@ public class CancelCommand extends SubCommand {
 
     @Override
     public List<String> onTabComplete(CommandSender commandSender, List<String> list) {
-        return null;
+        return new ArrayList<>();
     }
 }

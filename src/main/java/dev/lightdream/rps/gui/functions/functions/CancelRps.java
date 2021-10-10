@@ -1,6 +1,7 @@
 package dev.lightdream.rps.gui.functions.functions;
 
 import dev.lightdream.api.databases.User;
+import dev.lightdream.api.gui.GUI;
 import dev.lightdream.rps.Main;
 import dev.lightdream.rps.files.dto.RPSGame;
 import dev.lightdream.rps.gui.functions.GUIFunction;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class CancelRps implements GUIFunction {
     @Override
-    public void execute(User user, List<String> args) {
+    public void execute(GUI gui, User user, List<String> args) {
         String arg = args.get(0);
 
         if (arg.equals("")) {

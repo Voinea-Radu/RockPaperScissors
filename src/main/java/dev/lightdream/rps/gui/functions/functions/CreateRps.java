@@ -1,6 +1,7 @@
 package dev.lightdream.rps.gui.functions.functions;
 
 import dev.lightdream.api.databases.User;
+import dev.lightdream.api.gui.GUI;
 import dev.lightdream.rps.Main;
 import dev.lightdream.rps.files.dto.RPSGame;
 import dev.lightdream.rps.gui.functions.GUIFunction;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public class CreateRps implements GUIFunction {
     @Override
-    public void execute(User user, List<String> a) {
+    public void execute(GUI gui, User user, List<String> a) {
         String arg = a.get(0);
         List<String> args = Arrays.asList(arg.split("\\|"));
 
