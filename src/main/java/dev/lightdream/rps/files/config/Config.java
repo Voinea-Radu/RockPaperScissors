@@ -86,5 +86,7 @@ public class Config extends dev.lightdream.api.configs.Config {
             false
     );
 
+    public int maxMatchLength = 60; //minutes
+
 
 }

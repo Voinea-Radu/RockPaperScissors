@@ -39,7 +39,7 @@ public class RPSGame {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RPSGame rpsGame = (RPSGame) o;
-        return Objects.equals(user, rpsGame.user);
+        return rpsGame.id == this.id;
     }
 
     @Override
@@ -104,5 +104,9 @@ public class RPSGame {
 
     public enum RPSEndState {
         WIN, LOSE, TIE
+    }
+
+    public void cancel(){
+        user.addMoney(bet);
     }
 }

@@ -1,7 +1,9 @@
 package dev.lightdream.rps.managers;
 
 import dev.lightdream.api.databases.User;
+import dev.lightdream.rps.Main;
 import dev.lightdream.rps.files.dto.RPSGame;
+import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -10,11 +12,12 @@ import java.util.List;
 
 public class RPSManager {
 
+    private final Main plugin;
     public List<RPSGame> rpsGames = new ArrayList<>();
     private int id = 0;
 
-    public RPSManager() {
-
+    public RPSManager(Main plugin) {
+        this.plugin = plugin;
     }
 
     public @NotNull List<RPSGame> getRpsGames(User user) {
@@ -40,5 +43,17 @@ public class RPSManager {
     public int getId() {
         id++;
         return id;
+    }
+
+    public void createGame(RPSGame game) {
+        rpsGames.add(game);
+        Bukkit.getScheduler().runTaskLater(Main.instance, () -> {
+            if (!rpsGames.contains(game)) {
+                return;
+            }
+            game.cancel();
+            rpsGames.remove(game);
+        }, Main.instance.config.maxMatchLength * 60 * 20L);
+
     }
 }

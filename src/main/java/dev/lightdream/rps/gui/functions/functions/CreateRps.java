@@ -29,8 +29,7 @@ public class CreateRps implements GUIFunction {
 
         user.removeMoney(amount);
 
-
-        Main.instance.rpsManager.rpsGames.add(new RPSGame(user, RPSGame.RPSType.of(rpsType), amount));
+        Main.instance.rpsManager.createGame(new RPSGame(user, RPSGame.RPSType.of(rpsType), amount));
         Main.instance.messageManager.sendMessage(user, Main.instance.lang.matchCreated);
 
 
