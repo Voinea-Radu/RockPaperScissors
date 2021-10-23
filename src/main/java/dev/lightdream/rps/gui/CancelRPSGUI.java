@@ -23,7 +23,7 @@ public class CancelRPSGUI extends GUI {
     private int current = -1;
 
     public CancelRPSGUI(IAPI api, User user) {
-        super(api);
+        super(api, user);
         this.user = user;
     }
 
@@ -96,5 +96,10 @@ public class CancelRPSGUI extends GUI {
     @Override
     public void onPlayerInventoryClick(InventoryClickEvent inventoryClickEvent) {
 
+    }
+
+    @Override
+    public boolean preventClose() {
+        return false;
     }
 }

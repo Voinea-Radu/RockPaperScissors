@@ -11,6 +11,6 @@ import java.util.List;
 public class ChoseRPS implements GUIFunction {
     @Override
     public void execute(GUI gui, User user, List<String> args) {
-        new RPSChoseGUI(Main.instance, Integer.parseInt(args.get(0)), true).open(user);
+        new RPSChoseGUI(Main.instance, Integer.parseInt(args.get(0)), true, user).open(user);
     }
 }

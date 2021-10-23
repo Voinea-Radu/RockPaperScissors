@@ -2,6 +2,7 @@ package dev.lightdream.rps.commands;
 
 import dev.lightdream.api.IAPI;
 import dev.lightdream.api.commands.SubCommand;
+import dev.lightdream.api.databases.User;
 import dev.lightdream.rps.Main;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
@@ -16,12 +17,12 @@ public class HelpCommand extends SubCommand {
     }
 
     @Override
-    public void execute(CommandSender commandSender, List<String> list) {
-        Main.instance.baseCommandManager.sendUsage(commandSender);
+    public void execute(User user, List<String> list) {
+        Main.instance.baseCommandManager.sendUsage(user);
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender commandSender, List<String> list) {
+    public List<String> onTabComplete(User user, List<String> list) {
         return new ArrayList<>();
     }
 }

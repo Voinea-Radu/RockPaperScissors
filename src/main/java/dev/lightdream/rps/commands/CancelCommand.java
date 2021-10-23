@@ -18,16 +18,12 @@ public class CancelCommand extends SubCommand {
     }
 
     @Override
-    public void execute(CommandSender commandSender, List<String> list) {
-        User user = Main.instance.databaseManager.getUser(commandSender);
-        if (user == null) {
-            return;
-        }
+    public void execute(User user, List<String> list) {
         new CancelRPSGUI(Main.instance, user).open(user);
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender commandSender, List<String> list) {
+    public List<String> onTabComplete(User user, List<String> list) {
         return new ArrayList<>();
     }
 }

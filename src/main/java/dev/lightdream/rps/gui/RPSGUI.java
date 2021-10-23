@@ -21,8 +21,8 @@ public class RPSGUI extends GUI {
 
     private int current = 0;
 
-    public RPSGUI(IAPI api) {
-        super(api);
+    public RPSGUI(IAPI api, User user) {
+        super(api, user);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class RPSGUI extends GUI {
 
     @Override
     public InventoryProvider getProvider() {
-        return new RPSGUI(api);
+        return new RPSGUI(api, getUser());
     }
 
     @Override
@@ -72,6 +72,11 @@ public class RPSGUI extends GUI {
     @Override
     public void onPlayerInventoryClick(InventoryClickEvent inventoryClickEvent) {
 
+    }
+
+    @Override
+    public boolean preventClose() {
+        return false;
     }
 
     @Override

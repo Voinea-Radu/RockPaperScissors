@@ -1,6 +1,7 @@
 package dev.lightdream.rps.gui;
 
 import dev.lightdream.api.IAPI;
+import dev.lightdream.api.databases.User;
 import dev.lightdream.api.dto.GUIConfig;
 import dev.lightdream.api.dto.GUIItem;
 import dev.lightdream.api.gui.GUI;
@@ -22,16 +23,16 @@ public class RPSChoseGUI extends GUI {
     private final int id;
     private final boolean create;
 
-    public RPSChoseGUI(IAPI api, int amount) {
-        super(api);
+    public RPSChoseGUI(IAPI api, int amount, User user) {
+        super(api, user);
         this.amount = amount;
         this.id = -1;
         this.create = true;
     }
 
     @SuppressWarnings("unused")
-    public RPSChoseGUI(IAPI api, int id, boolean useId) {
-        super(api);
+    public RPSChoseGUI(IAPI api, int id, boolean useId, User user) {
+        super(api, user);
         this.amount = -1;
         this.id = id;
         this.create = false;
@@ -52,7 +53,7 @@ public class RPSChoseGUI extends GUI {
 
     @Override
     public InventoryProvider getProvider() {
-        return create ? new RPSChoseGUI(api, amount) : new RPSChoseGUI(api, id, true);
+        return create ? new RPSChoseGUI(api, amount, getUser()) : new RPSChoseGUI(api, id, true, getUser());
     }
 
     @Override
@@ -99,5 +100,10 @@ public class RPSChoseGUI extends GUI {
     @Override
     public void onPlayerInventoryClick(InventoryClickEvent inventoryClickEvent) {
 
+    }
+
+    @Override
+    public boolean preventClose() {
+        return false;
     }
 }

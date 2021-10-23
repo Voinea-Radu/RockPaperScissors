@@ -19,21 +19,19 @@ public class CreateCommand extends SubCommand {
     }
 
     @Override
-    public void execute(CommandSender commandSender, List<String> args) {
+    public void execute(User user, List<String> args) {
         if (args.size() != 1) {
-            sendUsage(commandSender);
+            sendUsage(user);
             return;
         }
 
-        User user = Main.instance.databaseManager.getUser(commandSender);
-
         if (user == null) {
-            api.getMessageManager().sendMessage(commandSender, Main.instance.lang.invalidUser);
+            api.getMessageManager().sendMessage(user, Main.instance.lang.invalidUser);
             return;
         }
 
         if (Main.instance.rpsManager.getRpsGames(user).size()>=Main.instance.config.maxMatches) {
-            api.getMessageManager().sendMessage(commandSender, Main.instance.lang.cannotCreateMatch);
+            api.getMessageManager().sendMessage(user, Main.instance.lang.cannotCreateMatch);
             return;
         }
 
@@ -56,11 +54,11 @@ public class CreateCommand extends SubCommand {
             return;
         }
 
-        new RPSChoseGUI(api, amount).open(user);
+        new RPSChoseGUI(api, amount, user).open(user);
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender commandSender, List<String> list) {
+    public List<String> onTabComplete(User user, List<String> list) {
         return new ArrayList<>();
     }
 }
