@@ -23,6 +23,7 @@ public class PlayRsp implements GUIFunction {
         }
 
         int id = Integer.parseInt(idStr);
+        System.out.println(id);
 
         RPSGame game = Main.instance.rpsManager.getRpsGame(id);
 

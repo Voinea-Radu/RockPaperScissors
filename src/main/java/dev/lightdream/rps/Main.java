@@ -12,6 +12,7 @@ import dev.lightdream.rps.commands.CreateCommand;
 import dev.lightdream.rps.commands.HelpCommand;
 import dev.lightdream.rps.files.config.Config;
 import dev.lightdream.rps.files.config.Lang;
+import dev.lightdream.rps.files.dto.RPSGame;
 import dev.lightdream.rps.managers.RPSManager;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -32,7 +33,7 @@ public final class Main extends LightDreamPlugin {
 
     @Override
     public void onEnable() {
-        init("RockPaperScissors", "rps", "1.11");
+        init("RockPaperScissors", "rps", "1.12");
         instance = this;
 
         rpsManager = new RPSManager(this);
@@ -55,6 +56,7 @@ public final class Main extends LightDreamPlugin {
 
     @Override
     public void disable() {
+        rpsManager.rpsGames.forEach(RPSGame::cancel);
         databaseManager.save();
     }
 

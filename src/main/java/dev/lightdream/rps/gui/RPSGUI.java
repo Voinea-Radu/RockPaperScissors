@@ -30,7 +30,7 @@ public class RPSGUI extends GUI {
         return new MessageBuilder(raw).addPlaceholders(new HashMap<String, String>() {{
             put("player", Main.instance.rpsManager.rpsGames.get(current - 1).user.name);
             put("amount", String.valueOf(Main.instance.rpsManager.rpsGames.get(current - 1).bet));
-            put("id", String.valueOf(current));
+            put("id", String.valueOf(Main.instance.rpsManager.rpsGames.get(current - 1).id));
         }}).parseString();
     }
 
